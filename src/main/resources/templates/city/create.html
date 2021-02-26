@@ -13,6 +13,7 @@
             <th:block th:if="${message}">
                 <p th:text="${message}"></p>
             </th:block>
+            <a th:href="@{/admin/city/list}">List City</a>
             <form th:action="@{/admin/city/create}" th:object="${city}" method="post">
                 <div class="form-group row">
                     <div class="col-md-2"></div>

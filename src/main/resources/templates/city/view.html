@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<h1 class="font-weight-bold text-center">City Management</h1>
+<br/>
+<div class="row">
+    <div class="container">
+        <h2 class="font-weight-bold text-center">List city</h2>
+        <hr>
+        <span th:text="${message} ? ${message} : '' "></span>
+        <a th:href="@{/admin/city/create}">Add new City</a>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form id="remove" method="post" onsubmit="return confirm('Do you wanna delete this product?');">
+                    <table border="1" style="width: 100%">
+                        <tr>
+                            <th>#</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th style="width: 10%">Edit</th>
+                            <th style="width: 10%">Delete</th>
+                        </tr>
+                        <th:block th:each="c : ${cities}">
+                            <tr>
+                                <td th:text="${c.id}"></td>
+                                <td th:text="${c.nameCity}"></td>
+                                <td th:text="${c.country.nameCountry}"></td>
+                                <td>
+                                    <a class="btn btn-primary"
+                                       th:href="@{/admin/city-edit/__${c.id}__}">Edit</a>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" type="submit"
+                                            th:onclick="|deleteClick('${c.id}')|">Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </th:block>
+                    </table>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
 
+<script>
+    function deleteClick(id) {
+        console.log(id);
+        document.getElementById('remove').action = '/admin/city-delete/' + id;
+        document.getElementById('remove').method = 'POST';
+    }
+</script>
 </body>
 </html>

@@ -11,14 +11,16 @@
     <div class="container">
         <h2 class="font-weight-bold text-center">List city</h2>
         <hr>
-        <span th:text="${message} ? ${message} : '' "></span>
+        <th:block th:if="${message}">
+            <p th:text="${message}"></p>
+        </th:block>
         <a th:href="@{/admin/city/create}">Add new City</a>
         <br>
         <br>
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <form id="remove" method="post" onsubmit="return confirm('Do you wanna delete this product?');">
+                <form id="remove" method="post" onsubmit="return confirm('Do you wanna delete this city?');">
                     <table border="1" style="width: 100%">
                         <tr>
                             <th>#</th>
