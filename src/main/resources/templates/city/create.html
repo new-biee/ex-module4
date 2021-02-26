@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1><h1 class="font-weight-bold text-center">City Management</h1>
+    <h3 class="font-weight-bold text-center">Form create City</h3>
+    <div class="row">
+        <div class="container">
+            <hr>
+            <th:block th:if="${message}">
+                <p th:text="${message}"></p>
+            </th:block>
+            <form th:action="@{/admin/city/create}" th:object="${city}" method="post">
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    <label class="col-md-2 colFormLabel">City Name</label>
+                    <div class="col-md-4">
+                        <input class="form-control" type="text" name="nameCity" th:field="*{nameCity}"
+                               id="nameCity"
+                               placeholder="Name">
+                        <th:block th:if="${#fields.hasErrors('nameCity')}">
+                            <span th:if="${#fields.hasErrors('nameCity')}"
+                                  th:errors="*{nameCity}">City name error</span>
+                        </th:block>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    <label class="col-md-2 colFormLabel">City country</label>
+                    <div class="col-md-4">
+                        <select class="form-control" name="country" id="country" th:field="*{country}">
+                            <option th:each="country: ${countries}" th:value="${country.id}"
+                                    th:text="${country.nameCountry}"/>
+                        </select>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    <label class="col-md-2 colFormLabel">City area</label>
+                    <div class="col-md-4">
+                        <input class="form-control" type="number" name="area" th:field="*{area}"
+                               id="area"
+                               placeholder="Area">
+                        <th:block th:if="${#fields.hasErrors('area')}">
+                            <span th:if="${#fields.hasErrors('area')}" th:errors="*{area}">City area error</span>
+                        </th:block>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    <label class="col-md-2 colFormLabel">City population</label>
+                    <div class="col-md-4">
+                        <input class="form-control" type="number" name="population" th:field="*{population}"
+                               id="population"
+                               placeholder="Population">
+                        <th:block th:if="${#fields.hasErrors('population')}">
+                            <span th:if="${#fields.hasErrors('population')}" th:errors="*{population}">City population error</span>
+                        </th:block>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    <label class="col-md-2 colFormLabel">City GDP</label>
+                    <div class="col-md-4">
+                        <input class="form-control" type="number" name="gdp" th:field="*{gdp}"
+                               id="gdp"
+                               placeholder="GDP">
+                        <th:block th:if="${#fields.hasErrors('gdp')}">
+                            <span th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}">City gdp error</span>
+                        </th:block>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    <label class="col-md-2 colFormLabel">City introduce</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" type="text" name="introduce" th:field="*{introduce}" rows="5"
+                                  id="introduce"
+                                  placeholder="Introduce"></textarea>
+                        <th:block th:if="${#fields.hasErrors('introduce')}">
+                            <span th:if="${#fields.hasErrors('introduce')}" th:errors="*{introduce}">City introduce error</span>
+                        </th:block>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-1">
+                        <button class="btn btn-primary" type="submit" value="Save">Save</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger" type="reset">Reset</button>
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</h1>
+</body>
+</html>

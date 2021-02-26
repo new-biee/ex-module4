@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1><h1 class="font-weight-bold text-center">Country Management</h1>
+    <h3 class="font-weight-bold text-center">Form create country</h3>
+    <div class="row">
+        <div class="container">
+            <hr>
+            <th:block th:if="${message}">
+                <p th:text="${message}"></p>
+            </th:block>
+            <form th:action="@{/admin/country/create}" th:object="${country}" method="post">
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    <label class="col-md-2 colFormLabel">Country Name</label>
+                    <div class="col-md-4">
+                        <input class="form-control" type="text" name="nameCountry" th:field="*{nameCountry}"
+                               id="categoryName"
+                               placeholder="Name">
+                        <th:block th:if="${#fields.hasErrors('nameCountry')}">
+                            <span th:if="${#fields.hasErrors('nameCountry')}" th:errors="*{nameCountry}">Country name error</span>
+                        </th:block>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-1">
+                        <button class="btn btn-primary" type="submit" value="Save">Save</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger" type="reset">Reset</button>
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</h1>
+</body>
+</html>
